@@ -2,16 +2,21 @@ package router
 
 import (
 	"assignment-2/controllers"
+	"assignment-2/database"
 
 	"github.com/gin-gonic/gin"
 )
 
 func RouterOrder() *gin.Engine {
 	router := gin.Default()
-	router.GET("/orders", controllers.GetOrders)
-	router.PUT("/orders/:orderId", controllers.UpdateOrder)
-	router.POST("/orders", controllers.CreateOrder)
-	router.DELETE("/orders/:orderId", controllers.DeleteOrder)
+	db := database.Connection()
+
+	orderController := controllers.NewOrderController(db)
+
+	router.GET("/orders", orderController.GetOrders)
+	router.PUT("/orders/:orderId", orderController.UpdateOrder)
+	router.POST("/orders", orderController.CreateOrder)
+	router.DELETE("/orders/:orderId", orderController.DeleteOrder)
 
 	return router
 }
