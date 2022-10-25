@@ -46,7 +46,7 @@ func CreateOrder(ctx *gin.Context) {
 		return
 	}
 
-	ctx.JSON(http.StatusCreated, gin.H{"message": "Insert Data Order Success", "data": newOrder})
+	ctx.JSON(http.StatusCreated, gin.H{"message": "Insert Data Order Success", "Data ID": newOrder})
 }
 
 func UpdateOrder(ctx *gin.Context) {
@@ -91,5 +91,5 @@ func DeleteOrder(ctx *gin.Context) {
 		return
 	}
 
-	ctx.JSON(http.StatusOK, gin.H{"message": "Delete Data Order Success", "data": orderDelete})
+	ctx.JSON(http.StatusOK, gin.H{"message": "Delete Data Order Success", "data": orderDelete.ID})
 }
